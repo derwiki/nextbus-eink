@@ -5,6 +5,7 @@ import time
 import datetime
 import predictions
 
+
 SCREEN = Papirus()
 SCREEN.update()
 
