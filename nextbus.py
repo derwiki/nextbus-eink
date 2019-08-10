@@ -24,18 +24,15 @@ def display(s, full=False):
 i = 0
 while True:
     try:
-        route_lines = '\n'.join([
-            '  %s: %s' % (line, ', '.join(times))
-            for line, times
-            in predictions.request_predictions().items()
-        ])
+        current_predictions = predictions.request_predictions()
         i += 1
         now = datetime.datetime.now().strftime('%-I:%M:%S %p')
-        buffer = '\n'.join([
-            '        %s' % now,
+        buffer = '\n'.join((
+            '        {}'.format(now),
             '  NextBus',
-            route_lines,
-        ])
+            '  10: {}, {}'.format(*current_predictions['10']),
+            '  48: {}, {}'.format(*current_predictions['48']),
+        ))
         display(buffer, full=i % 3 == 0)
     except Exception as e:
         print(str(e))
